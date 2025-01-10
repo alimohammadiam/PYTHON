@@ -17,6 +17,7 @@ a, b, *c = 4, 5, 6, 7, 8, 9
 
 # ________________________
 
+
 def training_warlus():
     answer = input('Do you want to continue? ')
     while 'y' in answer.lower():

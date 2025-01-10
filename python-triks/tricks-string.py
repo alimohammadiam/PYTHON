@@ -26,9 +26,9 @@ formatted = "He is %s. %s is beautiful boy! i`m not hate %s ..." % (name.title()
 # S1 --> Dictionary
 key = 'reza'
 value = 65.50
-formatted = "name: %(key)-15s weight: %(value)d" % {'key':key, 'value':value}
+formatted = "name: %(key)-15s weight: %(value)d" % {'key': key, 'value': value}
 
-formatted = "He is %(name)s. %(name)s is beautiful boy! i`m not hate %(name)s ..." %{'name': name.title()}
+formatted = "He is %(name)s. %(name)s is beautiful boy! i`m not hate %(name)s ..." % {'name': name.title()}
 
 # 4- مشکل پر حرفی (زیاده نویسی)
 
@@ -62,7 +62,28 @@ c_dict = '%(key)-10s = %(value).2f' % {'key':key, 'value': value}
 str_kw = '{key:<10} = {value:.2f}'.format(key=key, value=value)
 str_args = '{:<10} = {:.2f}'.format(key, value)
 c_tuple = '%-10s = %.2f' % (key, value)
-f_string = f'{key:<10} = {value:.2f}'
+f_string = f'{key: <10} = {value: .2f}'
 
-# ------------
-#----------------------------------test
+# -------------------------------------------Reversed String------------------------------------------
+# 1
+s = 'Ali Mohammadi'
+
+reversed_s = ''.join(reversed(s))
+
+# 2
+reversed_s_2 = ''
+for i in s:
+    reversed_s_2 = i + reversed_s_2
+
+# 3
+from functools import reduce
+
+reversed_s_3 = (reduce(lambda x, y: y + x, s))
+
+# 4
+reversed_s_4 = bytearray(s, "utf-8")
+reversed_s_4.reverse()
+reversed_s_4 = str(reversed_s_4.decode("utf-8"))
+
+# 5 slicing
+reversed_s_5 = s[::-1]
