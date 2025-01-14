@@ -76,7 +76,7 @@ list_3 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 # list[n:] + list[:n]
 list_ = list_3[3:] + list_3[:3]
 
-#
+# max and min in list
 
 list_4 = [1, 2, 12, 9, 8, 7, 6]
 final_list = []
@@ -89,21 +89,115 @@ for i in range(0, n):
             max_ = j
     list_4.remove(max_)
     final_list.append(max_)
+list_4 = list_4 + final_list
 
 
+final_list = list_4.copy()
+final_list.sort()
+final_list = final_list[-n:]
+
+# import heapq
+# final_list = heapq.nlargest(3, list_4)
+# final_list = heapq.nsmallest(3, list_4)
+
+# string to dar to --> real list
+
+# import json
+# str_list = input('str: ')
+# str_list = json.loads(str_list)
+#
+# import ast
+# str_list_2 = input('str: ')
+# str_list_2 = ast.literal_eval(str_list_2)
 
 
+# sorted Dictionary with value
+
+dict_ = {"a": 4, "b": 9, "c": 7, "d": 8, "e": 0}
+
+sorted_value = sorted(dict_.values())
+sorted_dict = {}
+
+for i in sorted_value:
+    for k in dict_.keys():
+        if dict_[k] == i:
+            sorted_dict[k] = dict_[k]
+            break
+
+# from operator import itemgetter
+# sorted_dict_4 = dict(sorted(dict_.items(), key=itemgetter(1)))
+
+sorted_dict_2 = {k: v for k, v in sorted(dict_.items(), key=lambda item: item[1])}
+
+sorted_dict_3 = {k: dict_[k] for k in sorted(dict_, key=dict_.get)}
 
 
+# round method
+r1 = round(18456.7564)
+r2 = round(18456.7564, 2)
+r3 = round(18456.7564, -2)
+r4 = round(18456.7564, -4)
+
+# پیدا کردن یک کلمه و نشون دادن کلمات قبل و بعد
+
+text = '''
+    Einblick reimagines the modern data science workflow in a collaborative data science canvas,
+    rather than a linear notebook. Working in a canvas environment offers many advantages including
+    live collaboration, an expansive visual interface, and a progressive computation engine.
+    In this article, we’ll highlight one of the key ways we’re saving data scientists time–our
+    operators. We’ll go through a couple of our core operators, why Python is such a crucial
+    part of our software solution, and how we augmented our offerings with a user operator
+    interface. The latter allows users to customize and use their own operators, which can
+    be used in any Einblick canvas, and shared with other Einblick users.
+'''
+
+search = lambda tex, q: tex[tex.find(q) - 30: tex.find(q) + 30] if q in tex else -1
+search(text, 'notebook')
+
+# بررسی یکسان بودن همه اعضای یک لیست
+my_list = [5] * 10
+def all_element_same(lst):
+    if not lst:
+        return True
+    first_element = lst[0]
+    for element in lst:
+        if first_element != element:
+            return False
+    return True
 
 
+def all_element_same_2(lst):
+    return len(set(lst)) == 1
 
 
+def all_element_same_3(lst):
+    return all(x == lst[0] for x in lst)
 
 
+def all_element_same_4(lst):
+    return True if lst.count(lst[0]) == len(lst) else False
 
 
+# list comprehension به جای filter و map
+
+lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+squares = [i ** 2 for i in lst]
+squares_map = list(map(lambda x: x ** 2, lst))
+
+squares_odd = [i ** 2 for i in lst if i % 2 != 0]
+squares_odd_map_filter = list(map(lambda x: x ** 2, filter(lambda x: x % 2 != 0, lst)))
+
+squares_dict = {i: i ** 2 for i in lst if i % 2 != 0}
+squares_dict_map_filter = dict(map(lambda x: (x, x ** 2), filter(lambda x: x % 2 != 0, lst)))
 
 
+# مقایسه دو لیست نامرتب بدون تکرار
 
+l1 = [1, 2, 3, 4]
+l2 = [2, 1, 3, 4]
 
+a = sorted(l1) == sorted(l2)
+b = set(l1) == set(l2)  # تکرار ها را نادیده میگیره
+
+# from collections import Counter
+# c = Counter(l1) == Counter(l2)
