@@ -1,7 +1,9 @@
 from math import hypot
+from typing import Optional
 import doctest
 
 
+# <object>.<attribute> = <value>
 class Point:
     """
     A Point in the exit provides two-dimensional coordinates.
@@ -50,7 +52,23 @@ class Point:
         return hypot(self.x - other.x, self.y - other.y)
 
 
-# <object>.<attribute> = <value>
+point: Optional[Point] = None
 
 
+def get_point():
+    global point
+    if not point:
+        point = Point()
+    return point
 
+
+def main():
+    p1 = Point()
+    p1.reset()
+    p2 = Point()
+    p2.move(3, 4)
+    print(p1.distance(p2))
+
+
+if __name__ == '__main__':
+    main()
