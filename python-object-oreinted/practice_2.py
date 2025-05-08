@@ -130,12 +130,21 @@ class Student:
         Student.courses_offered.extend(courses)
 
     def show_all_info(self) -> None:
+        """
+        show all fields
+        :return:
+        """
         print(f'first_name: {self.first_name}\nlast_name: {self.last_name}\nage: {self.age}\nstudent_id: {self.student_id}'
               f'\nmajor: {self.major}\nphone: {self.phone}\nemail: {self.email}\naddress: {self.address}\nscores: '
               f' {self.scores}\n GPA: {self.gpa}\nstatus: {self.status}\ncourses: {self.courses}\ncredits_units: '
               f' {self.credits_units}\n')
 
     def edit_info(self) -> None:
+        """
+        show all info and complete or edit info.
+        choice valid option, Leave the field empty to not change it.
+        :return:
+        """
         while True:
             print('Edit info\n\nChoice a option:\n\t\t1.show info\n\t\t2.name and age\n\t\t3.major\n\t\t4.email ans '
                   'phone\n\t\t4.address\n\t\t5.status')
@@ -192,7 +201,11 @@ class Student:
             else:
                 break
 
-    def set_scores(self):
+    def set_scores(self) -> None:
+        """
+        set score for credit courses
+        :return:
+        """
         while True:
             print(40 * '_')
             n = input('1.To Continue 2.Exit')
@@ -208,8 +221,16 @@ class Student:
             else:
                 print('Invalid Score !!')
 
-    def get_pga(self):
-        pass
+    def get_pga(self) -> float:
+        """
+        Calculate average score of courses
+        :return: average
+        """
+        sum_, avg = 0, 0
+        for i in self.scores.keys():
+            sum_ += self.scores[i]
+        avg = sum_ / len(self.scores.items())
+        return avg
 
     def display(self):
         self.__str__()
@@ -218,7 +239,11 @@ class Student:
         print(f'Course units obtained: {self.credits_units}\nLessons learned: ', self.courses)
 
     def add_course(self):
-        pass
+        print(f'your courses: \n{self.courses}')
+        print('_' * 40)
+        print(f'courses offered: ')
+        for index, course in enumerate(Student.courses_offered):
+            print(f'{index + 1}.{Student.courses_offered}')
 
     def delete_course(self):
         pass
