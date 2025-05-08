@@ -18,7 +18,7 @@ class UserList(list["User"]):
 class User:
     all_users: list["User"] = UserList()
 
-    def __init__(self, user_name: str, email: str, password: str) -> None:
+    def __init__(self, user_name: str, email: str, password: str, **kwargs) -> None:
         self.user_name = user_name
         self.email = email
         self.password = password
@@ -33,13 +33,21 @@ class User:
 
 
 class Seller(User):
+    def __init__(self, shaba: str, **kwargs):
+        super().__init__(**kwargs)
+        self.shaba = shaba
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.user_name!r}, {self.email!r}, ' \
+               f'{self.password!r}, {self.shaba!r})'
+
     def order(self, order: "Order") -> None:
         print(f'{self.user_name}, From your product, {order} was sold!')
 
 
 class Bauer(User):
-    def __init__(self, user_name: str, email: str, password: str, phone: str) -> None:
-        super().__init__(user_name, email, password)
+    def __init__(self, phone: str, **kwargs) -> None:
+        super().__init__(**kwargs)
         self.phone = phone
 
     def __repr__(self):
@@ -47,8 +55,21 @@ class Bauer(User):
                f'{self.password!r}, {self.phone!r})'
 
 
+class SellerAndBauer(Seller, Bauer):
+    def __init__(self, score, **kwargs):
+        super().__init__(**kwargs)
+        self.score = score
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.user_name!r}, {self.email!r}, ' \
+               f'{self.password!r}, {self.phone!r}, {self.shaba}, {self.score})'
+
+
 def main():
-    pass
+    s = Seller(shaba='6097997521609157', user_name='AliMohammadi', email='ali0182@gmail.com', password='123')
+    b = Bauer(user_name='khoda', email='khoda@gmail.com', password='321', phone='09925126890')
+    sb = SellerAndBauer(score='100', shaba='456', phone='0313131', user_name='aaa', email='bbb', password='333')
+    pprint(User.all_users)
 
 
 if __name__ == '__main__':
