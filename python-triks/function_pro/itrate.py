@@ -107,4 +107,32 @@ def b(x):
         fact *= i
 
 
-# ---
+# --- Generator
+def list_range(start, end, step=1):
+    new_range = []
+    while start < end:
+        new_range.append(start)
+        start += step
+    return new_range
+
+
+def generator_range(start, end, step=1):
+    while start < end:
+        yield step
+        start += step
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
